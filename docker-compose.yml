@@ -16,8 +16,8 @@ services:
 
   api:
     build: .
-    command: sh -c "npm install && npm run migrate && npm run dev"
-    # command: sh -c "npm install && npm run migrate && npm run seed && npm run dev" # use only intially if you want to seed the berths data in the DB
+    # command: sh -c "npm install && npm run migrate && npm run dev"
+    command: sh -c "npm install && npm run migrate && npm run seed && npm run dev" # use only intially if you want to seed the berths data in the DB
     volumes:
       - .:/app
     ports:
