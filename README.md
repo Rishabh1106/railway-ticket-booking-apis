@@ -75,7 +75,7 @@ docker compose exec api node src/db/seeders/seedPassengers.js
 ```
 
 ### 📮 API Usage (Sample Requests)
-Book a Ticket
+#### Book a Ticket
 
 ```
 curl --location 'http://localhost:3000/api/v1/book' \
@@ -106,10 +106,11 @@ Sample Response
 }
 ```
 
-Cancel a Ticket
+#### Cancel a Ticket
 
 ```
 curl --location --request POST 'http://localhost:3000/api/v1/cancel/<ticket_id>'
+```
 Sample Response
 
 ```
@@ -122,7 +123,7 @@ Sample Response
 }
 ```
 
-Get All Booked Tickets
+#### Get All Booked Tickets
 
 curl --location 'http://localhost:3000/api/v1/booked'
 Sample Response
@@ -150,9 +151,10 @@ Sample Response
 }
 ```
 
-Get Current Availability
+#### Get Current Availability
 ```
 curl --location 'http://localhost:3000/api/v1/available'
+```
 Sample Response
 ```
 {
@@ -161,10 +163,13 @@ Sample Response
   "waiting_left": 1
 }
 ```
+
 ### 🎥 Demo Video
 👉 Click here to watch the demo
 
-(Replace with actual link, or upload video to YouTube, Loom, or Google Drive and paste it above.)
+[Booking](https://drive.google.com/file/d/1E0m6Wa38J0b1gQPecD2bFiR4uuHOVMIo/view?usp=drive_link)
+[Cancellation](https://drive.google.com/file/d/1_pG0Wff1CFeVJp-04YTzRQb2NET0tdLj/view?usp=drive_link)
+
 
 ### 📌 Notes
 Passengers under 5 are not allocated a berth.
@@ -176,6 +181,27 @@ RAC → Confirmed
 Waiting → RAC
 
 Designed to handle concurrency with database transactions.
+
+
+## Schema Design
+
+![App Screenshot](./public/schema.png)
+
+[Schema Link to Visualise](https://dbdiagram.io/d/FreJun-Railway-Booking-Schema-68419ac3ba2a4ac57bff1856)
+
+### **Entities:**
+
+- **tickets:** A ticket groups passengers and has an overall status (`confirmed`, `rac`, `waiting`).
+- **passengers:** Each passenger belongs to one ticket and might get a berth unless they're a child (age < 5).
+- **berths:** Each physical seat or logical spot (RAC or waiting). Tracks which passenger is occupying it.
+
+### **Relationships:**
+
+- `ticket_id` in `passengers` → `tickets.id` (one-to-many)
+- `ticket_id`, `passenger_id` in `berths` → respectively reference `tickets` and `passengers` (nullable, many-to-one)
+
+
+
 
 🧑‍💻 Author
 Rishabh Nagar
