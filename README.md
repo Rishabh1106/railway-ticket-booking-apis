@@ -38,12 +38,12 @@ PORT=3000
 ## 🚀 Run Locally with Docker
 Make sure you have Docker and Docker Compose installed.
 
-1. Build and start the service
+### Build and start the service
 ```
 docker-compose up --build
 ```
-2. Run migrations and Seed data (berths and sample passengers)
-Add package.json script for the same. While running compose --build, migrations and seeding can be run via compose only. Refer to docker-compose file
+Note: To Run migrations and Seed data (berths and sample passengers)
+I have added package.json scripts. While running compose --build, migrations and seeding can be run via compose only. Refer to docker-compose file
 
 ### 📮 API Usage (Sample Requests)
 #### Book a Ticket
