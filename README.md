@@ -17,28 +17,6 @@ A Node.js + Express backend for a smart **railway ticket reservation system** wi
 
 ---
 
-## 📁 Project Structure
-
-src/
-├── controllers/ # ticketController.js
-├── db/
-│ ├── connection.js
-│ ├── migrations/
-│ └── seeders/
-├── routes/ # ticketRoutes.js
-├── services/ # ticketService.js
-└── index.js
-
-docker-compose.yml
-Dockerfile
-.env
-knexfile.js
-
-yaml
-Copy
-Edit
-
----
 
 ## 📦 Environment Setup
 
@@ -64,15 +42,8 @@ Make sure you have Docker and Docker Compose installed.
 ```
 docker-compose up --build
 ```
-2. Run migrations
-```
-docker compose exec api npx knex migrate:latest --knexfile knexfile.js
-```
-3. Seed data (berths and sample passengers)
-```
-docker compose exec api node src/db/seeders/seedBerths.js
-docker compose exec api node src/db/seeders/seedPassengers.js
-```
+2. Run migrations and Seed data (berths and sample passengers)
+Add package.json script for the same. While running compose --build, migrations and seeding can be run via compose only. Refer to docker-compose file
 
 ### 📮 API Usage (Sample Requests)
 #### Book a Ticket
@@ -125,7 +96,10 @@ Sample Response
 
 #### Get All Booked Tickets
 
+```
 curl --location 'http://localhost:3000/api/v1/booked'
+```
+
 Sample Response
 
 ```
@@ -165,10 +139,8 @@ Sample Response
 ```
 
 ### 🎥 Demo Video
-👉 Click here to watch the demo
-
-[Booking](https://drive.google.com/file/d/1E0m6Wa38J0b1gQPecD2bFiR4uuHOVMIo/view?usp=drive_link)
-[Cancellation](https://drive.google.com/file/d/1_pG0Wff1CFeVJp-04YTzRQb2NET0tdLj/view?usp=drive_link)
+👉 Booking Demo : [Booking](https://drive.google.com/file/d/1E0m6Wa38J0b1gQPecD2bFiR4uuHOVMIo/view?usp=drive_link)
+👉 Cancellation Demo : [Cancellation](https://drive.google.com/file/d/1_pG0Wff1CFeVJp-04YTzRQb2NET0tdLj/view?usp=drive_link)
 
 
 ### 📌 Notes
